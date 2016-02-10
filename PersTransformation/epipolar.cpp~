@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <opencv2/opencv.hpp>
+#include <opencv2/highgui/highgui_c.h>
+
+using namespace cv;
+
+int main( int argc, char** argv )
+{
+  Mat image;
+Size size(100,100);//the dst image size,e.g.100x100
+  image = imread( argv[1], 1 );
+
+  if( argc != 2 || !image.data )
+    {
+      printf( "No image data \n" );
+      return -1;
+    }
+
+  namedWindow( "Display Image", CV_WINDOW_AUTOSIZE );
+
+Mat dst;//dst imagee
+resize(image,dst,size);//resize image
+ 
+  imshow( "Display Image", dst );
+
+  waitKey(0);
+
+  return 0;
+}
